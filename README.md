@@ -47,11 +47,16 @@ List the interfaces
 ./listinterfaces.sh
 ```
 
+Check the "Recommended Ingest Endpoints For You" https://stream.twitch.tv/ingests/
 
-Trasmitting
+
+# Trasmitting
+
+./mzstream.sh VIDEOCARD WEBCAM AUDIO_DEVICE INGEST_ENDPOINT
 
 ```
-./mzstream.sh /dev/video0 /dev/video2 1
+./mzstream.sh /dev/video2 /dev/video4 1 rtmp://waw.contribute.live-video.net/app/
+
 ```
 
 
