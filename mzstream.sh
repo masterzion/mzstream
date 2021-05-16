@@ -8,12 +8,6 @@ export AUDIO=$3
 export TOP_POS_CAM=24
 export LEFT_POS_CAM=900
 
-for d in /dev/video* ; do echo $d ; v4l2-ctl --device=$d -D --list-formats  ; echo '===============' ; done 
-
-arecord -l
-
-echo "requires ffmpeg 4.4"
-
 /usr/local/bin/ffmpeg -i $CAPTURECARD  -i  $WEBCAMSRC -f alsa -i hw:$3 -filter_complex "
 [0:v]setpts=PTS-STARTPTS,scale=$RESOLUTION:[left];
 [1:v]setpts=PTS-STARTPTS,scale=260x150:[right];
