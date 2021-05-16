@@ -15,7 +15,7 @@ ffmpeg -i /dev/video2 -i /dev/video4 -f alsa -i hw:$3 -filter_complex "
 [left][right]overlay=shortest=1:x=750:y=20[v]" -map "[v]" -map  "2:a" \
         -vcodec libx264 -preset fast -maxrate 2000  -s "$RESOLUTION"\
         -acodec libmp3lame -ar 44100 -q:a 1   \
-        -pix_fmt yuv420p -f flv temp.flv
+        -pix_fmt yuv420p -f flv ${SERVER}${TWITCH_KEY}
 
 
 
