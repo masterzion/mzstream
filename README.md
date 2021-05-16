@@ -61,7 +61,7 @@ Check the "Recommended Ingest Endpoints For You" https://stream.twitch.tv/ingest
 
 # Output Result
 
-![](./Screenshot.png =320x200)
+![](https://github.com/masterzion/mzstream/blob/main/Screenshot.png =320x200)
 
 
 # Todo
