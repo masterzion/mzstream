@@ -13,7 +13,7 @@ ffmpeg -i $CAPTURECARD -i $WEBCAMSRC -f alsa -i hw:$3 -filter_complex "
 [0:v]setpts=PTS-STARTPTS,scale=$RESOLUTION:[left];
 [1:v]setpts=PTS-STARTPTS,scale=260x150:[right];
 [left][right]overlay=shortest=1:x=750:y=20[v]" -map "[v]" -map  "2:a" \
-        -vcodec libx264 -preset fast -maxrate 2000 -r 24  -s "$RESOLUTION"\
+        -vcodec libx264 -preset fast -maxrate 2000 -r 24  -b 3500000 -s "$RESOLUTION"\
         -acodec libmp3lame -ar 44100 -q:a 1   \
         -pix_fmt yuv420p -f flv ${SERVER}${TWITCH_KEY}
 
