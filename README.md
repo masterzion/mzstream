@@ -59,11 +59,14 @@ Check the "Recommended Ingest Endpoints For You" https://stream.twitch.tv/ingest
 
 ```
 
+# Output Result
+
+![](./Screenshot.png =320x200)
 
 
 # Todo
-
-WEB UI
+ - WEB UI
+ - Improve performance
 
 
 # License
