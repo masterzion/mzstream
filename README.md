@@ -64,11 +64,34 @@ Check the "Recommended Ingest Endpoints For You" https://stream.twitch.tv/ingest
 
 ![Screenshot](https://github.com/masterzion/mzstream/blob/main/Screenshot.png)
 
+More details at: https://youtu.be/7Jj2e0VOGfw
+
 # Todo
  - WEB UI
  - Improve performance
+
+# Overclock
+
+https://magpi.raspberrypi.org/articles/how-to-overclock-raspberry-pi-4
+
+
+# Hardware
+
+ - Raspberry pi 4
+ - Aluminum Aluminum Case - https://www.aliexpress.com/item/4000204565326.html
+ - ezcap
+ - Razer Kiyo
+
+
+![Hardware](https://github.com/masterzion/mzstream/blob/main/hardware.jpg)
 
 
 # License
 
 GNU General Public License (GPL) version 2
+
+
+# Important
+
+I won't take responsibility of anything
+Use by your own risk
