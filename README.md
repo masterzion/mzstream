@@ -51,7 +51,6 @@ List the interfaces
 Trasmitting
 
 ```
-./listinterfaces.sh
 ./mzstream.sh /dev/video0 /dev/video2 1
 ```
 
