@@ -1,6 +1,6 @@
 # mzstream
 
-Transmmit video capture video and audio + camera video to the twitch
+Transmit video capture video and audio + camera video to the twitch
 
 # Configure
 
