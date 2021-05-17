@@ -2,6 +2,12 @@
 
 Transmit video and audio from the capture card + camera video to the twitch
 
+# Output Result
+
+![Screenshot](https://github.com/masterzion/mzstream/blob/main/Screenshot.png)
+
+More details at: https://youtu.be/7Jj2e0VOGfw
+
 # Configure
 
 Open your bashrc file 
@@ -59,12 +65,6 @@ https://stream.twitch.tv/ingests/
 ./mzstream.sh /dev/video2 /dev/video4 1 rtmp://waw.contribute.live-video.net/app/
 
 ```
-
-# Output Result
-
-![Screenshot](https://github.com/masterzion/mzstream/blob/main/Screenshot.png)
-
-More details at: https://youtu.be/7Jj2e0VOGfw
 
 # Todo
  - WEB UI
