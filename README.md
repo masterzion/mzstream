@@ -1,11 +1,14 @@
 # mzstream
 
-Transmmit video capture video and audio + camera video  to twitch
+Transmit video and audio from the capture card + camera video to the twitch
 
+# Output Result
 
+![Screenshot](https://github.com/masterzion/mzstream/blob/main/Screenshot.png)
 
+More details at: https://youtu.be/7Jj2e0VOGfw
 
-# mzstream
+# Configure
 
 Open your bashrc file 
 
@@ -13,7 +16,8 @@ Open your bashrc file
 nano ~/.bashrc
 ```
 
-add at the end your TWITCH secret
+Add at the end your TWITCH secret
+You cand find yours at https://dashboard.twitch.tv/settings/stream
 
 ```
 export TWITCH_KEY=YOUR_SECRET_KEY
@@ -32,6 +36,9 @@ export TWITCH_KEY=YOUR_SECRET_KEY
 
 
 # Install
+
+Install this script and builf the new ffmpeg
+
 ```
 git clone https://github.com/masterzion/mzstream.git
 cd mzstream
@@ -47,8 +54,8 @@ List the interfaces
 ./listinterfaces.sh
 ```
 
-Check the "Recommended Ingest Endpoints For You" https://stream.twitch.tv/ingests/
-
+Check the "Recommended Ingest Endpoints For You"
+https://stream.twitch.tv/ingests/
 
 # Trasmitting
 
@@ -59,16 +66,31 @@ Check the "Recommended Ingest Endpoints For You" https://stream.twitch.tv/ingest
 
 ```
 
-# Output Result
-
-
-![Screenshot](https://github.com/masterzion/mzstream/blob/main/Screenshot.png)
-
 # Todo
  - WEB UI
  - Improve performance
+
+# Overclock
+
+https://magpi.raspberrypi.org/articles/how-to-overclock-raspberry-pi-4
+
+# Hardware
+
+ - Raspberry pi 4
+ - Aluminum Aluminum Case - https://www.aliexpress.com/item/4000204565326.html
+ - ezcap
+ - Razer Kiyo
+
+
+![Hardware](https://github.com/masterzion/mzstream/blob/main/hardware.jpg)
 
 
 # License
 
 GNU General Public License (GPL) version 2
+
+
+# Important
+
+I won't take responsibility of anything
+Use by your own risk
