@@ -1,6 +1,6 @@
 #!/bin/bash
 
-export RESOLUTION=1280x720
+export RESOLUTION=1024
 export CAPTURECARD=$1
 export WEBCAMSRC=$2
 export AUDIO=$3
@@ -16,8 +16,8 @@ do
     -ss 5 -i $CAPTURECARD \
     -f alsa  -thread_queue_size 8K -i hw:$3 \
     -filter_complex "
-   [1:v]setpts=PTS-STARTPTS:,scale=1024:-1[left];
-   [0:v]setpts=PTS-STARTPTS,scale=260x150:[right];
+   [1:v]setpts=PTS-STARTPTS:,scale=$RESOLUTION:-1[left];
+   [0:v]setpts=PTS-STARTPTS,scale=260:-1[right];
    [left][right]overlay=shortest=1:x=750:y=20[v]" -map "[v]" -map  "2:a"  \
       -preset ultrafast -maxrate 2000k -bufsize 64000k  \
       -acodec libmp3lame  -q:a 1   \
@@ -29,8 +29,3 @@ do
    sleep 3
    echo "Retrying..."
 done
-
-
-
-
-
