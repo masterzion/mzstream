@@ -6,6 +6,8 @@ current_config = {
     "val_y" : ""
 }
 
+is_running=0
+
 function setposy(val) {
   var cam = document.getElementById("camera");
   cam.style.marginTop = ((100-val)/1.77)+"%";
@@ -51,6 +53,16 @@ function LoadDrivers(response) {
    var video2 = document.getElementById("video2");
    var audio = document.getElementById("audio");
    var run = document.getElementById("run");
+
+   setposy(current_config.val_y);
+   document.getElementById("val_y").value = current_config.val_y;
+
+   setposx(current_config.val_x);
+   document.getElementById("val_x").value = current_config.val_x;
+
+   document.getElementById("run").checked = is_running;
+
+
 
    cur_index = 0;
    Object.keys(actual_JSON.video).forEach(function(value,i){
@@ -108,6 +120,16 @@ function LoadConfig(response) {
 }
 
 
+function LoadRunning(response) {
+  is_running = 0;
+  is_running = JSON.parse(response);
+}
+
+
+
+
+
+
 function senddata(enabled) {
   var xmlhttp = new XMLHttpRequest();
 
@@ -149,6 +171,7 @@ function refreshdata() {
   audio.disabled=true;
   run.disabled=true;
 
+  loadJSON(LoadRunning, 'run.txt', false);
   loadJSON(LoadConfig, 'config.json', false);
   setTimeout(function(){
     loadJSON(LoadDrivers, 'drivers.json', true);

@@ -1,7 +1,1 @@
-{
-"audio" : "Kiyo [Razer Kiyo]",
-"capture" : "USB Camera(YUYV MJPG)",
-"webcam": "Razer Kiyo(MJPG YUYV H264)",
-"val_x" : "50",
-"val_y" : "80"
-}
+{"audio":"PCH [HDA Intel PCH]","capture":"USB Camera(YUYV MJPG)","webcam":"USB Camera(YUYV MJPG)","val_x":"58","val_y":"42"}
