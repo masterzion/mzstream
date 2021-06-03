@@ -6,3 +6,4 @@ web/run.txt
 *live_*
 *.pyc
 __pycache__
+mycron.tmp

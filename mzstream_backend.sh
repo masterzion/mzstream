@@ -14,7 +14,7 @@ remove_file web/run.txt
 kill_process mzstream.sh
 kill_process ffmpeg
 
-#python http.py $WEBUI_PORT &
+python http.py $WEBUI_PORT &
 while :
 do
   [ ! -e web/drivers.json ] && ./listinterfaces.sh

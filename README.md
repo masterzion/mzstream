@@ -36,12 +36,18 @@ export TWITCH_URL=rtmp://waw.contribute.live-video.net/app/
 
 | Scripts              | Function                              |
 |----------------------|:-------------------------------------:|
+| README.md            | This file  :)                         |
 | installdeps.sh       | Install all dependences               |
 | build.sh             | Download and build FFMPEG on raspberry|
 | build_ubuntux64.sh   | Download and build FFMPEG on Ubuntu   |
 | listinterfaces.sh    | list all available interface          |
 | mzstream.sh          | Main program                          |
-| README.md            | This file  :)                         |
+| install_web.sh       | Install and uninstall the webservice  |
+| http.py              | Light http server (python2)           |
+| docs/                | Documentation images                  |
+| web/                 | files for the  webservice             |
+
+
 
 
 # Install
@@ -71,6 +77,24 @@ List the interfaces
 ./mzstream.sh /dev/video2 /dev/video4 1 98 98 rtmp://waw.contribute.live-video.net/app/
 
 ```
+
+# install webservice
+
+
+```
+./install_web.sh
+
+```
+
+# uninstall webservice
+
+```
+./install_web.sh --uninstall
+
+```
+
+
+
 
 # Todo
  - WEB UI
