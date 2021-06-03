@@ -3,7 +3,16 @@
   <link rel="stylesheet" href="index.css">
   <script src="index.js"></script>
 </head>
-<body>
+<body onload="init();">
+
+Audio <select id="audio"></select> <br />
+<br />
+Capture card: <select id="video1"></select> <br />
+<br />
+Webcam:  <select id="video2"></select> <br />
+<br />
+<hr />
+
 RUN
 <div id="divA">
   <label class="switch">
@@ -12,7 +21,7 @@ RUN
 </label>
 </div>
 
-
+<hr />
 
 <div id="divB">
   <input type="range" id="val_y" min="0" max="764" oninput="setposy(this.value)" onchange="setposy(this.value)" orient="vertical" />

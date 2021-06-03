@@ -9,7 +9,6 @@ declare -a arformat=()
 for d in $(ls /dev/video*) ; do
       arinput+=($d)
 
-      vformat=""
       while read -r line
       do
         if [[ "$line" == *"Card type"* ]]; then
@@ -20,7 +19,7 @@ for d in $(ls /dev/video*) ; do
 
         if [[ "$line" == *"Driver Info"* ]]; then
           addcaptureline=false
-          vformat=""
+          vformat="_"
         fi
 
         if [[ $addcaptureline = true ]]; then
@@ -34,6 +33,10 @@ for d in $(ls /dev/video*) ; do
           addcaptureline=true
         fi
       done <<< $(v4l2-ctl --device=$d -D --list-formats)
+
+      if [[ "$vformat" != "_" ]]; then
+        vformat="${vformat:1}"
+      fi
       arformat+=($vformat)
 done
 
@@ -41,11 +44,12 @@ lastline=$(echo "${#arformat[@]}"-1 | bc)
 
 echo "{" > web/drivers.json
 
-echo "  ""video"": {" >> web/drivers.json
+echo "  \"video\": {" >> web/drivers.json
 
 for i in "${!arformat[@]}"; do
-
-  name=$(printf "\"%s\":\"%s(%s)\"" "${arinput[i]}" "${arname[i]}" "${arformat[i]}")
+  vformat=$(printf "%s" "${arformat[i]}")
+  vformat="${vformat:1}"
+  name=$(printf "\"%s\":\"%s(%s)\"" "${arinput[i]}" "${arname[i]}" "$vformat")
   name="${name//_/ }"
   if [[ ! $i = $lastline ]]; then
      name="$name,"
@@ -53,12 +57,12 @@ for i in "${!arformat[@]}"; do
 
   echo "    $name"  >> web/drivers.json
 done
-echo "  }" >> web/drivers.json
+echo "  }," >> web/drivers.json
 
 
 lastline=$(arecord -l | grep card  | wc -l)
 lastline=$(echo "$lastline"-1 | bc)
-echo "  ""audio"": {" >> web/drivers.json
+echo "  \"audio\": {" >> web/drivers.json
 i=0
 while read -r line
 do
