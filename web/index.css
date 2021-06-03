@@ -83,4 +83,17 @@ input[type=range][orient=vertical]
   background-color: lightblue;
   width: 25%;
   aspect-ratio: 4/3;
+  text-align: center;
+}
+
+#camera p {
+  margin-top:30%;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+
+.content {
+  max-width: 500px;
+  margin: auto;
 }

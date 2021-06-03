@@ -72,4 +72,6 @@ function LoadDrivers(response) {
 
 function init() {
   loadJSON(LoadDrivers, 'drivers.json');
+  setposy(100);
+  setposx(100);
 }

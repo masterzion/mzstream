@@ -4,35 +4,35 @@
   <script src="index.js"></script>
 </head>
 <body onload="init();" onresize="adjustscreen()">
+<div class="content">
+  Audio <select id="audio"></select> <br />
+  <br />
+  Capture card: <select id="video1"></select> <br />
+  <br />
+  Webcam:  <select id="video2"></select> <br />
+  <br />
+  <hr />
 
-Audio <select id="audio"></select> <br />
-<br />
-Capture card: <select id="video1"></select> <br />
-<br />
-Webcam:  <select id="video2"></select> <br />
-<br />
-<hr />
+  RUN
+  <div id="divA">
+    <label class="switch">
+        <input type="checkbox" id="run">
+        <span class="slider round"></span>
+  </label>
+  </div>
 
-RUN
-<div id="divA">
-  <label class="switch">
-      <input type="checkbox" id="run">
-      <span class="slider round"></span>
-</label>
+  <hr />
+
+  <div id="divB">
+    <input type="range" id="val_y" min="0" max="100" value="100" oninput="setposy(this.value)" onchange="setposy(this.value)" orient="vertical" />
+    <input type="range" id="val_x" min="0" max="100" value="100" oninput="setposx(this.value)" onchange="setposx(this.value)""/>
+  </div>
+
+
+  <div id="screen">
+    <div id="camera"><p>Camera</p></div>
+  </div>
 </div>
-
-<hr />
-
-<div id="divB">
-  <input type="range" id="val_y" min="0" max="100" oninput="setposy(this.value)" onchange="setposy(this.value)" orient="vertical" />
-  <input type="range" id="val_x" min="0" max="100" oninput="setposx(this.value)" onchange="setposx(this.value)""/>
-</div>
-
-
-<div id="screen">
-  <div id="camera">CAMERA</div>
-</div>
-
 
 </body>
 </html>
