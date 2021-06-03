@@ -1,13 +1,28 @@
 #!/bin/bash
 
-export RESOLUTION=1024
+export WIDTH=1024
+export HEIGHT=768
+export CAM_WIDTH=260
+export CAM_HEIGHT=194
+
 export CAPTURECARD=$1
 export WEBCAMSRC=$2
 export AUDIO=$3
-export SERVER=$4
-export TOP_POS_CAM=24
-export LEFT_POS_CAM=900
 
+export POS_X=$4
+export POS_Y=$5
+
+export SERVER=$6
+
+MAX_LEFT=$(echo "$WIDTH-$CAM_WIDTH" | bc)
+MAX_LEFT=$(echo "scale=2; $MAX_LEFT / 100" | bc -l)
+POS_LEFT=$(echo "$MAX_LEFT * $POS_X" | bc |  cut -d. -f1)
+echo "POS_LEFT $POS_LEFT"
+
+MAX_TOP=$(echo "$HEIGHT-$CAM_HEIGHT" | bc)
+MAX_TOP=$(echo "scale=2; $MAX_TOP / 100" | bc -l)
+POS_TOP=$(echo "$MAX_TOP * $POS_Y" | bc |  cut -d. -f1)
+echo "POS_TOP $POS_TOP"
 
 while :
 do
@@ -16,9 +31,9 @@ do
     -ss 5 -i $CAPTURECARD \
     -f alsa  -thread_queue_size 8K -i hw:$3 \
     -filter_complex "
-   [1:v]setpts=PTS-STARTPTS:,scale=$RESOLUTION:-1[left];
-   [0:v]setpts=PTS-STARTPTS,scale=260:-1[right];
-   [left][right]overlay=shortest=1:x=750:y=20[v]" -map "[v]" -map  "2:a"  \
+   [1:v]setpts=PTS-STARTPTS:,scale=$WIDTH:-1[left];
+   [0:v]setpts=PTS-STARTPTS,scale=$CAM_WIDTH:-1[right];
+   [left][right]overlay=shortest=1:x=$POS_LEFT:y=$POS_TOP[v]" -map "[v]" -map  "2:a"  \
       -preset ultrafast -maxrate 2000k -bufsize 64000k  \
       -acodec libmp3lame  -q:a 1   \
       -pix_fmt yuv420p  -vcodec libx264   \

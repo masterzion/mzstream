@@ -1,26 +1,35 @@
 # mzstream
 
 Transmit video and audio from the capture card + camera video to the twitch
+# Output Result
 
 # Output Result
 
-![Screenshot](https://github.com/masterzion/mzstream/blob/main/Screenshot.png)
+![Screenshot](https://github.com/masterzion/mzstream/blob/main/docs/webui.png)
+
+
+![Screenshot](https://github.com/masterzion/mzstream/blob/main/docs/Screenshot.png)
 
 More details at: https://youtu.be/7Jj2e0VOGfw
 
 # Configure
 
-Open your bashrc file 
+Open your bashrc file
 
 ```
 nano ~/.bashrc
 ```
 
 Add at the end your TWITCH secret
-You cand find yours at https://dashboard.twitch.tv/settings/stream
+You can find yours at https://dashboard.twitch.tv/settings/stream
+
+Check the "Recommended Ingest Endpoints For You" for the right TWITCH_URL value
+https://stream.twitch.tv/ingests/
 
 ```
 export TWITCH_KEY=YOUR_SECRET_KEY
+export WEBUI_PORT=8777
+export TWITCH_URL=rtmp://waw.contribute.live-video.net/app/
 ```
 
 # Content
@@ -54,15 +63,12 @@ List the interfaces
 ./listinterfaces.sh
 ```
 
-Check the "Recommended Ingest Endpoints For You"
-https://stream.twitch.tv/ingests/
+# manual run
 
-# Trasmitting
-
-./mzstream.sh VIDEOCARD WEBCAM AUDIO_DEVICE INGEST_ENDPOINT
+./mzstream.sh VIDEOCARD WEBCAM AUDIO_DEVICE POS_X_PERCENT POS_Y_PERCENT INGEST_ENDPOINT
 
 ```
-./mzstream.sh /dev/video2 /dev/video4 1 rtmp://waw.contribute.live-video.net/app/
+./mzstream.sh /dev/video2 /dev/video4 1 98 98 rtmp://waw.contribute.live-video.net/app/
 
 ```
 
@@ -82,7 +88,7 @@ https://magpi.raspberrypi.org/articles/how-to-overclock-raspberry-pi-4
  - Razer Kiyo
 
 
-![Hardware](https://github.com/masterzion/mzstream/blob/main/hardware.jpg)
+![Hardware](https://github.com/masterzion/mzstream/blob/main/docs/hardware.jpg)
 
 
 # License
