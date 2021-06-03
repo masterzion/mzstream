@@ -109,8 +109,34 @@ function LoadConfig(response) {
 
 
 function senddata(enabled) {
-   var val_y = document.getElementById("val_y").value;
-   var val_x = document.getElementById("val_x").value;
+  var xmlhttp = new XMLHttpRequest();
+
+  if (enabled) {
+      var video1 = document.getElementById("video1");
+      var video2 = document.getElementById("video2");
+      var audio = document.getElementById("audio");
+
+      var val_y = document.getElementById("val_y");
+      var val_x = document.getElementById("val_x");
+
+
+
+      data = {
+      "audio" : audio.options[video1.selectedIndex].innerHTML,
+      "capture" : video1.options[video1.selectedIndex].innerHTML,
+      "webcam":   video2.options[video2.selectedIndex].innerHTML,
+      "val_x" : val_x.value,
+      "val_y" : val_y.value,
+      }
+      url="/run"
+  } else {
+    url="/stop"
+    data = 0
+  }
+
+  xmlhttp.open("POST", url);
+  xmlhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+  xmlhttp.send(JSON.stringify(data));
 }
 
 function refreshdata() {
