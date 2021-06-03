@@ -24,7 +24,6 @@ do
       -pix_fmt yuv420p  -vcodec libx264   \
       -f flv -flags:v +global_header -rtmp_buffer 10000 -r 30 -async 1 \
       ${SERVER}${TWITCH_KEY}
- exit
    echo "Stream error..."
    sleep 3
    echo "Retrying..."

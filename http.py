@@ -18,18 +18,22 @@ class ServerHandler(SimpleHTTPServer.SimpleHTTPRequestHandler):
             os.remove("run.txt")
             self.send_response(200)
         else:
-            file1 = open("config.json","w")
-            post_body = post_body.replace("{", "\n{\n")
-            post_body = post_body.replace("}", "\n}\n")
-            post_body = post_body.replace(",", ",\n")
+            if post_body == "refresh":
+                os.remove("drivers.json")
+                self.send_response(200)
+            else:
+                file1 = open("config.json","w")
+                post_body = post_body.replace("{", "\n{\n")
+                post_body = post_body.replace("}", "\n}\n")
+                post_body = post_body.replace(",", ",\n")
 
-            file1.write(post_body)
-            file1.close()
+                file1.write(post_body)
+                file1.close()
 
-            file1 = open("run.txt","w")
-            file1.write("1")
-            file1.close()
-            self.send_response(200)
+                file1 = open("run.txt","w")
+                file1.write("1")
+                file1.close()
+                self.send_response(200)
 
 
 Handler = ServerHandler

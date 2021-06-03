@@ -32,7 +32,7 @@ function loadJSON(callback, filename, forceretry) {
             console.log(this.status)
             if ( forceretry ) {
               setTimeout(function(){
-                loadJSON(callback, filename);
+                loadJSON(callback, filename, forceretry);
               }, 1*1000, "1");
             }
           }
@@ -54,11 +54,14 @@ function LoadDrivers(response) {
    var audio = document.getElementById("audio");
    var run = document.getElementById("run");
 
-   setposy(current_config.val_y);
-   document.getElementById("val_y").value = current_config.val_y;
 
+   var val_y = document.getElementById("val_y");
+   setposy(current_config.val_y);
+   val_y.value = current_config.val_y;
+
+   var val_x = document.getElementById("val_x");
    setposx(current_config.val_x);
-   document.getElementById("val_x").value = current_config.val_x;
+   val_x.value = current_config.val_x;
 
    document.getElementById("run").checked = is_running;
 
@@ -111,6 +114,8 @@ function LoadDrivers(response) {
    video1.disabled=is_running;
    video2.disabled=is_running;
    audio.disabled=is_running;
+   val_y.disabled=is_running;
+   val_x.disabled=is_running;
    run.disabled=false;
 
 }
@@ -145,11 +150,6 @@ function LoadRunning(response) {
   video2.disabled=is_running;
   audio.disabled=is_running;
 }
-
-
-
-
-
 
 function senddata(enabled) {
   var xmlhttp = new XMLHttpRequest();
@@ -193,7 +193,14 @@ function senddata(enabled) {
   xmlhttp.send(JSON.stringify(data));
 }
 
-function refreshdata() {
+function refreshdata(clean) {
+  var video1 = document.getElementById("video1");
+  var video2 = document.getElementById("video2");
+  var audio = document.getElementById("audio");
+
+  var val_y = document.getElementById("val_y");
+  var val_x = document.getElementById("val_x");
+
   video1.innerHTML = "";
   video2.innerHTML = "";
   audio.innerHTML = "";
@@ -202,17 +209,26 @@ function refreshdata() {
   video2.disabled=true;
   audio.disabled=true;
   run.disabled=true;
+  val_y.disabled=true;
+  val_x.disabled=true;
+
+  if (clean) {
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.open("POST", '/refresh');
+    xmlhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+    xmlhttp.send('refresh');
+  }
 
   loadJSON(LoadRunning, 'run.txt', false);
   loadJSON(LoadConfig, 'config.json', false);
   setTimeout(function(){
     loadJSON(LoadDrivers, 'drivers.json', true);
-  }, 1*500, "1");
+  }, 500, "1");
 
 }
 
 function init() {
   setposy(100);
   setposx(100);
-  refreshdata();
+  refreshdata(false);
 }
