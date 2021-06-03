@@ -1,18 +1,12 @@
 function setposy(val) {
-  var y = parseInt(val / 768  * 100);
   var cam = document.getElementById("camera");
-
-  console.log(y);
-
-  cam.style.marginTop = y;
+  cam.style.marginTop = ((100-val)/1.77)+"%";
 }
 
 
 function setposx(val) {
-  var x = parseInt(val / 1024 * 100);
   var cam = document.getElementById("camera");
-  console.log(x);
-  cam.style.marginLeft = x;
+  cam.style.marginLeft = val/1.33+"%";
 }
 
 
@@ -73,6 +67,8 @@ function LoadDrivers(response) {
 
 
 }
+
+
 
 function init() {
   loadJSON(LoadDrivers, 'drivers.json');

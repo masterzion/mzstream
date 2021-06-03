@@ -3,7 +3,7 @@
   <link rel="stylesheet" href="index.css">
   <script src="index.js"></script>
 </head>
-<body onload="init();">
+<body onload="init();" onresize="adjustscreen()">
 
 Audio <select id="audio"></select> <br />
 <br />
@@ -24,14 +24,13 @@ RUN
 <hr />
 
 <div id="divB">
-  <input type="range" id="val_y" min="0" max="764" oninput="setposy(this.value)" onchange="setposy(this.value)" orient="vertical" />
-  <input type="range" id="val_x" min="0" max="618" oninput="setposx(this.value)" onchange="setposx(this.value)""/>
+  <input type="range" id="val_y" min="0" max="100" oninput="setposy(this.value)" onchange="setposy(this.value)" orient="vertical" />
+  <input type="range" id="val_x" min="0" max="100" oninput="setposx(this.value)" onchange="setposx(this.value)""/>
 </div>
 
 
 <div id="screen">
-  <div id="camera"></div>
-
+  <div id="camera">CAMERA</div>
 </div>
 
 
