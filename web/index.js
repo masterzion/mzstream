@@ -108,9 +108,9 @@ function LoadDrivers(response) {
 
    });
 
-   video1.disabled=false;
-   video2.disabled=false;
-   audio.disabled=false;
+   video1.disabled=is_running;
+   video2.disabled=is_running;
+   audio.disabled=is_running;
    run.disabled=false;
 
 }
@@ -121,8 +121,29 @@ function LoadConfig(response) {
 
 
 function LoadRunning(response) {
+  var video1 = document.getElementById("video1");
+  var video2 = document.getElementById("video2");
+  var audio = document.getElementById("audio");
+
+  var val_y = document.getElementById("val_y");
+  var val_x = document.getElementById("val_x");
+
   is_running = 0;
+
+  val_y.disabled=is_running;
+  val_x.disabled=is_running;
+
+  video1.disabled=is_running;
+  video2.disabled=is_running;
+  audio.disabled=is_running;
   is_running = JSON.parse(response);
+
+  val_y.disabled=is_running;
+  val_x.disabled=is_running;
+
+  video1.disabled=is_running;
+  video2.disabled=is_running;
+  audio.disabled=is_running;
 }
 
 
@@ -133,28 +154,39 @@ function LoadRunning(response) {
 function senddata(enabled) {
   var xmlhttp = new XMLHttpRequest();
 
+  var video1 = document.getElementById("video1");
+  var video2 = document.getElementById("video2");
+  var audio = document.getElementById("audio");
+
+  var val_y = document.getElementById("val_y");
+  var val_x = document.getElementById("val_x");
+
+
   if (enabled) {
-      var video1 = document.getElementById("video1");
-      var video2 = document.getElementById("video2");
-      var audio = document.getElementById("audio");
-
-      var val_y = document.getElementById("val_y");
-      var val_x = document.getElementById("val_x");
-
-
-
       data = {
       "audio" : audio.options[video1.selectedIndex].innerHTML,
+      "audio_id" : audio.options[video1.selectedIndex].value,
       "capture" : video1.options[video1.selectedIndex].innerHTML,
+      "capture_id" : video1.options[video1.selectedIndex].value,
       "webcam":   video2.options[video2.selectedIndex].innerHTML,
+      "webcam_id":   video2.options[video2.selectedIndex].value,
       "val_x" : val_x.value,
       "val_y" : val_y.value,
       }
-      url="/run"
+      url="/run";
+      is_running=true;
   } else {
-    url="/stop"
-    data = 0
+    url="/stop";
+    data = 0;
+    is_running=false;
   }
+
+  val_y.disabled=is_running;
+  val_x.disabled=is_running;
+
+  video1.disabled=is_running;
+  video2.disabled=is_running;
+  audio.disabled=is_running;
 
   xmlhttp.open("POST", url);
   xmlhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
