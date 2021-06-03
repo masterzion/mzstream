@@ -1,0 +1,51 @@
+<html>
+<head>
+  <link rel="stylesheet" href="index.css">
+  <script src="index.js"></script>
+</head>
+<body onload="init();" onresize="adjustscreen()">
+<div class="content">
+
+  <div id="inputs">
+    <div id="divrefresh">
+      <input type="button" value="refresh" onclick="refreshdata(true)" />
+    </div>
+
+    <ul>
+      <li><span class="spanleft">Audio:</span><select id="audio" disabled="true"></select></li>
+      <li><span class="spanleft">Capture card:</span><select id="video1" disabled="true"></select> </li>
+      <li><span class="spanleft">Webcam:</span><select id="video2" disabled="true"></select></li>
+    </ul>
+
+
+    <hr />
+
+    <ul>
+      <li><span class="spanleft">RUN</span>
+        <div id="divA">
+          <label class="switch">
+              <input type="checkbox" id="run" onchange="senddata(this.checked)" disabled="true">
+              <span class="slider round"></span>
+        </label>
+        </div>
+      </li>
+    </ul>
+
+
+
+  </div>
+    <hr />
+
+  <div id="divB">
+    <input type="range" id="val_y" min="0" max="100" value="100" oninput="setposy(this.value)" onchange="setposy(this.value)" orient="vertical" />
+    <input type="range" id="val_x" min="0" max="100" value="100" oninput="setposx(this.value)" onchange="setposx(this.value)"/>
+  </div>
+
+
+  <div id="screen">
+    <div id="camera"><p>Camera</p></div>
+  </div>
+</div>
+
+</body>
+</html>

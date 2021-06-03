@@ -1,2 +1,9 @@
 temp*
 test*
+web/drivers.json
+web/config.json
+web/run.txt
+*live_*
+*.pyc
+__pycache__
+mycron.tmp
