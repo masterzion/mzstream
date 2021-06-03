@@ -1,6 +1,3 @@
-function sleep(ms) {
-  return new Promise(resolve => setTimeout(resolve, ms));
-}
 
 function setposy(val) {
   var cam = document.getElementById("camera");
@@ -18,25 +15,22 @@ function loadJSON(callback, filename) {
   var req = new XMLHttpRequest();
   req.open('GET', filename, true);
   req.setRequestHeader("Cache-Control", "no-cache, no-store, max-age=0");
-  req.onload  = function() {
-
-  };
-
   req.onreadystatechange = function() {
         if (this.readyState == 4)
           if (this.status == 200) {
               callback(req.responseText);
           } else {
-            sleep(500);
-            loadJSON(callback, filename);
+            console.log(this.status)
+            setTimeout(function(){
+              loadJSON(callback, filename);
+            }, 1*1000, "1")
           }
       };
-
 
   try {
       req.send(null);
   } catch (e) {
-    alert(e);
+    console.log(e);
   }
 
 }
@@ -49,18 +43,6 @@ function LoadDrivers(response) {
    var video2 = document.getElementById("video2");
    var audio = document.getElementById("audio");
    var run = document.getElementById("run");
-
-   video1.innerHTML = "";
-   video2.innerHTML = "";
-   audio.innerHTML = "";
-
-   video1.disabled=true;
-   video2.disabled=true;
-   audio.disabled=true;
-   run.disabled=true;
-
-
-
 
 
    Object.keys(actual_JSON.video).forEach(function(value,i){
@@ -79,7 +61,7 @@ function LoadDrivers(response) {
             video2.options.add(option2);
         }
         catch (e) {
-            alert(e);
+            console.log(e);
         }
       }
    });
@@ -94,7 +76,7 @@ function LoadDrivers(response) {
           audio.options.add(option1);
       }
       catch (e) {
-          alert(e);
+          console.log(e);
       }
    });
 
@@ -111,6 +93,16 @@ function senddata(enabled) {
 }
 
 function refreshdata() {
+  video1.innerHTML = "";
+  video2.innerHTML = "";
+  audio.innerHTML = "";
+
+  video1.disabled=true;
+  video2.disabled=true;
+  audio.disabled=true;
+  run.disabled=true;
+
+
   loadJSON(LoadDrivers, 'drivers.json');
 }
 

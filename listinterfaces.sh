@@ -1,5 +1,6 @@
 #!/bin/bash
-rm web/drivers.json
+[ -e web/drivers.json ] &&  rm web/drivers.json
+[ -e web/drivers.json.tmp ] &&  rm web/drivers.json.tmp
 declare -a arinput=()
 declare -a arname=()
 declare -a arformat=()
