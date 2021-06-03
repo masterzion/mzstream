@@ -67,7 +67,9 @@ do
      driver=$(echo $line | cut -d: -f1)
      name=$(echo $line | cut -d: -f2 | cut -d, -f1)
      driver=$(echo $driver | sed 's/card //')
+     name="${name:1}"
      snd=$(echo "\"$driver\":\"$name\"")
+
      if [[ ! $i = $lastline ]]; then
         snd="$snd,"
      fi

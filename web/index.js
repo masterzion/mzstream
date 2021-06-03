@@ -1,3 +1,10 @@
+current_config = {
+    "audio" : "",
+    "capture" : "",
+    "webcam": "",
+    "val_x" : "",
+    "val_y" : ""
+}
 
 function setposy(val) {
   var cam = document.getElementById("camera");
@@ -11,7 +18,7 @@ function setposx(val) {
 }
 
 
-function loadJSON(callback, filename) {
+function loadJSON(callback, filename, forceretry) {
   var req = new XMLHttpRequest();
   req.open('GET', filename, true);
   req.setRequestHeader("Cache-Control", "no-cache, no-store, max-age=0");
@@ -21,9 +28,11 @@ function loadJSON(callback, filename) {
               callback(req.responseText);
           } else {
             console.log(this.status)
-            setTimeout(function(){
-              loadJSON(callback, filename);
-            }, 1*1000, "1")
+            if ( forceretry ) {
+              setTimeout(function(){
+                loadJSON(callback, filename);
+              }, 1*1000, "1");
+            }
           }
       };
 
@@ -32,7 +41,6 @@ function loadJSON(callback, filename) {
   } catch (e) {
     console.log(e);
   }
-
 }
 
 
@@ -44,40 +52,48 @@ function LoadDrivers(response) {
    var audio = document.getElementById("audio");
    var run = document.getElementById("run");
 
-
+   cur_index = 0;
    Object.keys(actual_JSON.video).forEach(function(value,i){
       var txt = actual_JSON.video[value];
+
       if (txt.slice(-2) != '()') {
         var option1 = document.createElement("option");
-        var option2 = document.createElement("option");
         option1.value = value;
         option1.text = txt;
 
+        video1.options.add(option1);
+
+        if (txt == current_config.capture) {
+          video1.selectedIndex = cur_index;
+        }
+
+
+
+        var option2 = document.createElement("option");
         option2.value = value;
         option2.text = txt;
+        video2.options.add(option2);
+        if (txt == current_config.webcam) {
+          video2.selectedIndex = cur_index;
+        }
+       cur_index++;
 
-        try {
-            video1.options.add(option1);
-            video2.options.add(option2);
-        }
-        catch (e) {
-            console.log(e);
-        }
       }
    });
 
-   Object.keys(actual_JSON.audio).forEach(function(n,i){
-      var v = actual_JSON.audio[n];
+   Object.keys(actual_JSON.audio).forEach(function(value,i){
+      var txt = actual_JSON.audio[value];
       var option1 = document.createElement("option");
-      option1.text = v;
-      option1.value = n;
+      selected=(txt == current_config.webcam);
 
-      try {
-          audio.options.add(option1);
+      option1.text = txt;
+      option1.value = value;
+
+      audio.options.add(option1);
+      if (txt == current_config.audio) {
+        audio.selectedIndex = i;
       }
-      catch (e) {
-          console.log(e);
-      }
+
    });
 
    video1.disabled=false;
@@ -86,6 +102,11 @@ function LoadDrivers(response) {
    run.disabled=false;
 
 }
+
+function LoadConfig(response) {
+  current_config = JSON.parse(response);
+}
+
 
 function senddata(enabled) {
    var val_y = document.getElementById("val_y").value;
@@ -102,8 +123,11 @@ function refreshdata() {
   audio.disabled=true;
   run.disabled=true;
 
+  loadJSON(LoadConfig, 'config.json', false);
+  setTimeout(function(){
+    loadJSON(LoadDrivers, 'drivers.json', true);
+  }, 1*500, "1");
 
-  loadJSON(LoadDrivers, 'drivers.json');
 }
 
 function init() {
