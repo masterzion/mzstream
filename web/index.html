@@ -13,9 +13,10 @@ RUN
 </div>
 
 
+
 <div id="divB">
-  <input type="range" orient="vertical" min="0" max="764" onchange="setpos()"/>
-  <input type="range" min="0" max="618" onchange="setpos()"/>
+  <input type="range" id="val_y" min="0" max="764" oninput="setposy(this.value)" onchange="setposy(this.value)" orient="vertical" />
+  <input type="range" id="val_x" min="0" max="618" oninput="setposx(this.value)" onchange="setposx(this.value)""/>
 </div>
 
 
