@@ -213,7 +213,7 @@ ul {
   padding-left: 0px;
 }
 
-ul li span {
+ul li .spanleft {
   float: left;
   margin-top:13px;
   width: 100px;
