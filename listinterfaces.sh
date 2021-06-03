@@ -1,8 +1,5 @@
 #!/bin/bash
-
-echo "=================== VIDEO INTERFACES ==================="
-videolist=
-echo $videolist
+rm web/drivers.json
 declare -a arinput=()
 declare -a arname=()
 declare -a arformat=()
@@ -42,9 +39,9 @@ done
 
 lastline=$(echo "${#arformat[@]}"-1 | bc)
 
-echo "{" > web/drivers.json
+echo "{" > web/drivers.json.tmp
 
-echo "  \"video\": {" >> web/drivers.json
+echo "  \"video\": {" >> web/drivers.json.tmp
 
 for i in "${!arformat[@]}"; do
   vformat=$(printf "%s" "${arformat[i]}")
@@ -55,14 +52,14 @@ for i in "${!arformat[@]}"; do
      name="$name,"
   fi
 
-  echo "    $name"  >> web/drivers.json
+  echo "    $name"  >> web/drivers.json.tmp
 done
-echo "  }," >> web/drivers.json
+echo "  }," >> web/drivers.json.tmp
 
 
 lastline=$(arecord -l | grep card  | wc -l)
 lastline=$(echo "$lastline"-1 | bc)
-echo "  \"audio\": {" >> web/drivers.json
+echo "  \"audio\": {" >> web/drivers.json.tmp
 i=0
 while read -r line
 do
@@ -74,11 +71,11 @@ do
         snd="$snd,"
      fi
      i=$(expr $i + 1)
-     echo "    $snd"  >> web/drivers.json
+     echo "    $snd"  >> web/drivers.json.tmp
 
 done <<< $(arecord -l | grep card)
-echo "  }" >> web/drivers.json
+echo "  }" >> web/drivers.json.tmp
 
-echo "}" >> web/drivers.json
-
+echo "}" >> web/drivers.json.tmp
+mv web/drivers.json.tmp web/drivers.json
 cat web/drivers.json

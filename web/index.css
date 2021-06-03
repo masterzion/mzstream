@@ -97,3 +97,34 @@ input[type=range][orient=vertical]
   max-width: 500px;
   margin: auto;
 }
+
+select {
+  margin-top:10px;
+  padding: 5px;
+  width: 200px;
+}
+
+ul {
+  list-style-type: none;
+  padding-left: 0px;
+}
+
+ul li span {
+  float: left;
+  margin-top:13px;
+  width: 100px;
+}
+
+#divrefresh {
+  float: right;
+  height: 120px;
+  text-align: center;
+  border: 2px dashed #77C079;
+  width: 150px;
+}
+
+#divrefresh input {
+  margin-top:35px;
+  height: 50px;
+  width: 80px;
+}

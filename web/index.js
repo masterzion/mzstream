@@ -1,3 +1,7 @@
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
 function setposy(val) {
   var cam = document.getElementById("camera");
   cam.style.marginTop = ((100-val)/1.77)+"%";
@@ -12,13 +16,29 @@ function setposx(val) {
 
 function loadJSON(callback, filename) {
   var req = new XMLHttpRequest();
-//  req.responseType = 'json';
   req.open('GET', filename, true);
+  req.setRequestHeader("Cache-Control", "no-cache, no-store, max-age=0");
   req.onload  = function() {
-    callback(req.responseText);
+
   };
 
-  req.send(null);
+  req.onreadystatechange = function() {
+        if (this.readyState == 4)
+          if (this.status == 200) {
+              callback(req.responseText);
+          } else {
+            sleep(500);
+            loadJSON(callback, filename);
+          }
+      };
+
+
+  try {
+      req.send(null);
+  } catch (e) {
+    alert(e);
+  }
+
 }
 
 
@@ -28,6 +48,19 @@ function LoadDrivers(response) {
    var video1 = document.getElementById("video1");
    var video2 = document.getElementById("video2");
    var audio = document.getElementById("audio");
+   var run = document.getElementById("run");
+
+   video1.innerHTML = "";
+   video2.innerHTML = "";
+   audio.innerHTML = "";
+
+   video1.disabled=true;
+   video2.disabled=true;
+   audio.disabled=true;
+   run.disabled=true;
+
+
+
 
 
    Object.keys(actual_JSON.video).forEach(function(value,i){
@@ -65,13 +98,24 @@ function LoadDrivers(response) {
       }
    });
 
+   video1.disabled=false;
+   video2.disabled=false;
+   audio.disabled=false;
+   run.disabled=false;
 
 }
 
+function senddata(enabled) {
+   var val_y = document.getElementById("val_y").value;
+   var val_x = document.getElementById("val_x").value;
+}
 
+function refreshdata() {
+  loadJSON(LoadDrivers, 'drivers.json');
+}
 
 function init() {
-  loadJSON(LoadDrivers, 'drivers.json');
   setposy(100);
   setposx(100);
+  refreshdata();
 }

@@ -5,18 +5,24 @@
 </head>
 <body onload="init();" onresize="adjustscreen()">
 <div class="content">
-  Audio <select id="audio"></select> <br />
-  <br />
-  Capture card: <select id="video1"></select> <br />
-  <br />
-  Webcam:  <select id="video2"></select> <br />
-  <br />
+
+  <div id="divrefresh">
+    <input type="button" value="refresh" onclick="refreshdata()" />
+  </div>
+
+  <ul>
+    <li><span>Audio:</span><select id="audio" disabled="true"></select></li>
+    <li><span>Capture card:</span><select id="video1" disabled="true"></select> </li>
+    <li><span>Webcam:</span><select id="video2" disabled="true"></select></li>
+  </ul>
+
+
   <hr />
 
   RUN
   <div id="divA">
     <label class="switch">
-        <input type="checkbox" id="run">
+        <input type="checkbox" id="run" onchange="senddata(this.checked)" disabled="true">
         <span class="slider round"></span>
   </label>
   </div>
