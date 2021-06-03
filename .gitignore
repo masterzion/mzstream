@@ -3,3 +3,4 @@ test*
 web/drivers.json
 web/config.json
 web/run.txt
+*.pyc
