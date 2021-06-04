@@ -2,10 +2,11 @@
 
 Transmit video and audio from the capture card + camera video to the twitch
 
-# Output Result
+# WebUI
 
 ![Screenshot](https://github.com/masterzion/mzstream/blob/main/docs/webui.png)
 
+# Output Result
 
 ![Screenshot](https://github.com/masterzion/mzstream/blob/main/docs/Screenshot.png)
 
