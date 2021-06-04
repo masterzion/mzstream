@@ -1,7 +1,6 @@
 # mzstream
 
 Transmit video and audio from the capture card + camera video to the twitch
-# Output Result
 
 # Output Result
 
