@@ -1,18 +1,23 @@
 #!/bin/bash
 
 export WIDTH=1024
-export HEIGHT=768
+export HEIGHT=668
 export CAM_WIDTH=260
-export CAM_HEIGHT=194
+export CAM_HEIGHT=294
 
 export CAPTURECARD=$1
 export WEBCAMSRC=$2
 export AUDIO=$3
 
 export POS_X=$4
-export POS_Y=$5
+
+POS_Y=$5
+export POS_Y=$(echo "100-$POS_Y" | bc)
 
 export SERVER=$6
+
+
+
 
 MAX_LEFT=$(echo "$WIDTH-$CAM_WIDTH" | bc)
 MAX_LEFT=$(echo "scale=2; $MAX_LEFT / 100" | bc -l)
@@ -22,6 +27,8 @@ echo "POS_LEFT $POS_LEFT"
 MAX_TOP=$(echo "$HEIGHT-$CAM_HEIGHT" | bc)
 MAX_TOP=$(echo "scale=2; $MAX_TOP / 100" | bc -l)
 POS_TOP=$(echo "$MAX_TOP * $POS_Y" | bc |  cut -d. -f1)
+
+
 echo "POS_TOP $POS_TOP"
 
 while :

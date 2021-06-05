@@ -1,11 +1,11 @@
 
 {
-"audio":"PCH [HDA Intel PCH]",
-"audio_id":"0",
-"capture":"USB Camera(YUYV MJPG)",
+"audio":"capture [ezcap U3 capture]",
+"audio_id":"1",
+"capture":"ezcap U3 capture(MJPG YUYV)",
 "capture_id":"/dev/video0",
 "webcam":"Razer Kiyo(MJPG YUYV H264)",
 "webcam_id":"/dev/video2",
-"val_x":"45",
-"val_y":"47"
+"val_x":"100",
+"val_y":"100"
 }
