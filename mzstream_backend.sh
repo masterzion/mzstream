@@ -1,4 +1,7 @@
 #!/bin/bash
+source ~/.mzstream
+cd $(dirname $(readlink -f $0))
+
 remove_file () {
   [ -e  $1 ] && rm $1
 }

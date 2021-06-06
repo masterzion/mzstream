@@ -14,10 +14,10 @@ More details at: https://youtu.be/7Jj2e0VOGfw
 
 # Configure
 
-Open your bashrc file
+Create a configuration file in your home direcotry ~/.mzstream 
 
 ```
-nano ~/.bashrc
+nano ~/.mzstream
 ```
 
 Add at the end your TWITCH secret

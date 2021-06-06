@@ -1,5 +1,8 @@
 #!/bin/bash
 
+cd $(dirname $(readlink -f $0))
+source ~/.mzstream
+
 export WIDTH=1024
 export HEIGHT=668
 export CAM_WIDTH=260
@@ -41,7 +44,7 @@ do
    [1:v]setpts=PTS-STARTPTS:,scale=$WIDTH:-1[left];
    [0:v]setpts=PTS-STARTPTS,scale=$CAM_WIDTH:-1[right];
    [left][right]overlay=shortest=1:x=$POS_LEFT:y=$POS_TOP[v]" -map "[v]" -map  "2:a"  \
-      -preset ultrafast -maxrate 2000k -bufsize 64000k  \
+      -preset ultrafast -maxrate 2500k -bufsize 64000k  \
       -acodec libmp3lame  -q:a 1   \
       -pix_fmt yuv420p  -vcodec libx264   \
       -f flv -flags:v +global_header -rtmp_buffer 10000 -r 30 -async 1 \

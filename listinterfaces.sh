@@ -1,4 +1,8 @@
 #!/bin/bash
+
+cd $(dirname $(readlink -f $0))
+
+
 [ -e web/drivers.json ] &&  rm web/drivers.json
 [ -e web/drivers.json.tmp ] &&  rm web/drivers.json.tmp
 declare -a arinput=()
